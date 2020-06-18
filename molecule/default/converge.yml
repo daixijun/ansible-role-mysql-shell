@@ -1,0 +1,24 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include daixijun.mysql"
+      include_role:
+        name: "daixijun.mysql"
+      vars:
+        mysql_users:
+          - name: ic
+            password: hai0AiV7chaig5pheo=Z
+            priv: "*.*:ALL,GRANT"
+            host: "%"
+      when:
+        - inventory_hostname in groups['mysql']
+    - name: "Include daixijun.mysqlshell"
+      include_role:
+        name: "daixijun.mysqlshell"
+      vars:
+        mysqlshell_server: "172.17.0.2:33060"
+        mysqlshell_admin_username: "ic"
+        mysqlshell_admin_password: hai0AiV7chaig5pheo=Z
+      when:
+        - inventory_hostname == "mysql-shell"
