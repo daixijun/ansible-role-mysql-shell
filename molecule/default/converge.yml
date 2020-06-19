@@ -1,11 +1,15 @@
 ---
 - name: Converge
   hosts: all
+  any_errors_fatal: True
   tasks:
     - name: "Include daixijun.mysql"
       include_role:
         name: "daixijun.mysql"
       vars:
+        mysql_root_password: quovooG9veiph_ees4ah
+        mysql_repl_password: gaej6Xaequ5ughoh~sho
+        mysql_group_replication_name: 7f2fd0c1-d635-4a72-8237-9b366f527c6b
         mysql_users:
           - name: ic
             password: hai0AiV7chaig5pheo=Z
@@ -17,7 +21,7 @@
       include_role:
         name: "daixijun.mysqlshell"
       vars:
-        mysqlshell_server: "172.17.0.2:33060"
+        mysqlshell_mysqlx_server: "{{ hostvars['mysql-primary']['ansible_default_ipv4']['address'] }}:33060"
         mysqlshell_admin_username: "ic"
         mysqlshell_admin_password: hai0AiV7chaig5pheo=Z
       when:

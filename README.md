@@ -13,7 +13,7 @@
 ## 角色变量
 
 - `mysqlshell_version`: 版本号
-- `mysqlshell_ic_name`: Innodb Cluster 名称, 默认 "default"
+- `mysqlshell_cluster_name`: Innodb Cluster 名称, 默认 "default"
 - `mysqlshell_mysqlx_server`: MGR Primary 节点管理端口连接地址, 如: 172.17.0.2:33060
 - `mysqlshell_admin_username`: InnoDB Cluster操作账号，需要具备所有权限及 with grant option
 - `mysqlshell_admin_password`: 密码

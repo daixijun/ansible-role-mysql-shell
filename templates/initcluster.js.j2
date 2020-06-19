@@ -1,11 +1,11 @@
-var session = mysqlx.getSession("{{ mysqlshell_admin_username }}:{{ mysqlshell_admin_password }}@{{ mysqlshell_server }}")
+var session = mysqlx.getSession("{{ mysqlshell_admin_username }}:{{ mysqlshell_admin_password }}@{{ mysqlshell_mysqlx_server }}")
 shell.setSession(session)
 try {
   var schema = session.getSchema("mysql_innodb_cluster_metadata")
   print("InnoDB Cluster already created.")
 } catch(e) {
-  dba.createCluster("{{ mysqlshell_ic_name }}", {"adoptFromGR": true})
+  dba.createCluster("{{ mysqlshell_cluster_name }}", {"adoptFromGR": true})
   print("InnoDB Cluster create successful.")
 }
-// var cluster = dba.getCluster("{{ mysqlshell_ic_name }}")
+// var cluster = dba.getCluster("{{ mysqlshell_cluster_name }}")
 // print(cluster.status())
